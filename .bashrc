@@ -1,0 +1,57 @@
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# Enable shell options
+shopt -s autocd          # Change to named directory
+shopt -s cdspell         # Autocorrect cd misspellings
+shopt -s cmdhist         # Save multi-line commands in history as single line
+shopt -s dotglob         # Include hidden files in globs
+shopt -s histappend      # Do not overwrite history
+shopt -s expand_aliases  # Expand aliases
+shopt -s checkwinsize    # Check terminal size when bash regains control
+
+# Export settings
+export TERM="xterm-256color"
+export HISTCONTROL=ignoredups:erasedups  # No duplicate entries
+export PATH="$HOME/.bin:$HOME/.local/bin:$PATH"
+
+
+# Set default editor based on availability
+if command -v nvim &>/dev/null; then
+    export EDITOR='nvim'
+elif command -v vim &>/dev/null; then
+    export EDITOR='vim'
+else
+    export EDITOR='nano'
+fi
+
+# Set terminal title
+case ${TERM} in
+  xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
+    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
+        ;;
+  screen*)
+    PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
+    ;;
+esac
+
+# Load bash functions
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
+fi
+
+# Load bash aliases
+if [ -f ~/.bash_aliases ]; then
+	. ~/.bash_aliases
+fi
+
+
+# Load zoxide if installed
+if command -v zoxide &>/dev/null; then
+    eval "$(zoxide init bash)"
+fi
+
+# Load starship if installed
+if command -v starship &>/dev/null; then
+    eval "$(starship init bash)"
+fi

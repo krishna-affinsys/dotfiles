@@ -1,2 +1,3 @@
 # dotfiles
-Just dotfiles for work
+
+to be updated soon.
