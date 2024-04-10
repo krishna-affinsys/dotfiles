@@ -1,0 +1,11 @@
+[user]
+	email = krishna.raj@affinsys.com
+	name = krishna-affinsys
+	signingkey = 7D0FE647D896B2A5
+[commit]
+	gpgsign = true
+[core]
+	autocrlf = input
+	editor = nvim
+[init]
+  defaultBranch = main

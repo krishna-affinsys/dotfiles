@@ -1,8 +1,10 @@
 alias bashconfig='$EDITOR ~/.bashrc'
-alias ll='ls -alF --color=auto'
-alias la='ls -A --color=auto'
-alias l='ls -CF --color=auto'
+alias ls='ls --color=auto'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 
+alias cd='z'
 alias vim='nvim'
 
 # alias ls='eza -al --color=always --group-directories-first' # my preferred listing
