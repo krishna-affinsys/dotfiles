@@ -9,3 +9,5 @@
 	editor = nvim
 [init]
   defaultBranch = main
+[alias]
+	prune-branches = !git fetch -p && git branch -vv | awk \"{ if (\\$4 == \\\"[gone]\\\") { print \\$1 } }\" | xargs -r git branch -d
