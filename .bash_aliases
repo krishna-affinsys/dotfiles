@@ -27,3 +27,12 @@ alias psmem='ps auxf | sort -nr -k 4'
 alias pscpu='ps auxf | sort -nr -k 3'
 
 alias tb='nc termbin.com 9999'
+
+if [ -d "$HOME/.scripts" ]; then
+	for script in "$HOME/.scripts"/*; do
+		if [ -f "$script" ] && [ -x "$script" ]; then
+			script_name=$(basename "$script")
+			alias "${script_name%.*}"="$script"
+		fi
+	done
+fi
