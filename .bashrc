@@ -13,7 +13,7 @@ shopt -s checkwinsize   # Check terminal size when bash regains control
 # Export settings
 export TERM="xterm-256color"
 export HISTCONTROL=ignoredups:erasedups # No duplicate entries
-export PATH="$HOME/.bin:$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.bin:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/go/bin:$PATH"
 export NVM_DIR="$HOME/.config/nvm"
 
 if [ "$color_prompt" = yes ]; then
