@@ -9,5 +9,20 @@
 	editor = nvim
 [init]
   defaultBranch = main
-[alias]
-	prune-branches = !git fetch -p && git branch -vv | awk \"{ if (\\$4 == \\\"[gone]\\\") { print \\$1 } }\" | xargs -r git branch -d
+
+[includeIf "gitdir:~/.oss/"]
+  [user]
+	  email = nkrishnaraj0907@gmail.com
+    name = thekodeking
+    signingkey = /home/krishna/.ssh/kode-logger
+  [commit]
+    gpgsign = true
+  [gpg]
+    format = ssh
+  [core]
+	  autocrlf = input
+	  editor = nvim
+  [init]
+    defaultBranch = main
+
+
