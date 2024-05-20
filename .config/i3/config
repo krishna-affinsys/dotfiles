@@ -6,11 +6,12 @@ set $mod Mod4
 font pango: FiraCode Nerd Font 8
 
 exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id feh --no-fehbg --bg-fill '/home/krishna/Wallpapers/slideshow/colorful_astronaut.png'
+exec --no-startup-id feh --no-fehbg --bg-fill '/$HOME/wallpapers/colorful_astronaut.png'
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id xinput set-prop "ELAN06C7:00 04F3:3193 Touchpad" "libinput Tapping Enabled" 1
 exec --no-startup-id picom -b --experimental-backend
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh --forest
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
@@ -25,6 +26,7 @@ floating_modifier $mod
 bindsym $mod+Return exec alacritty
 bindsym $mod+w kill
 bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+s exec --no-startup-id ~/.config/polybar/scripts/launcher.sh
 #bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
@@ -61,7 +63,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+bindsym $mod+y layout stacking
 bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
