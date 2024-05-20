@@ -10,19 +10,5 @@
 [init]
   defaultBranch = main
 
-[includeIf "gitdir:~/.oss/"]
-  [user]
-	  email = nkrishnaraj0907@gmail.com
-    name = thekodeking
-    signingkey = /home/krishna/.ssh/kode-logger
-  [commit]
-    gpgsign = true
-  [gpg]
-    format = ssh
-  [core]
-	  autocrlf = input
-	  editor = nvim
-  [init]
-    defaultBranch = main
-
-
+[includeIf "gitdir:~/personal/**"]
+  path = ~/.gitconfig_personal
