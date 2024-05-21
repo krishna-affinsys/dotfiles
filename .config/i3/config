@@ -6,7 +6,7 @@ set $mod Mod4
 font pango: FiraCode Nerd Font 8
 
 exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id feh --no-fehbg --bg-fill '/$HOME/wallpapers/colorful_astronaut.png'
+exec --no-startup-id nitrogen --restore
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id xinput set-prop "ELAN06C7:00 04F3:3193 Touchpad" "libinput Tapping Enabled" 1
