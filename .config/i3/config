@@ -10,7 +10,7 @@ exec --no-startup-id nitrogen --restore
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id xinput set-prop "ELAN06C7:00 04F3:3193 Touchpad" "libinput Tapping Enabled" 1
-exec --no-startup-id picom -b --experimental-backend
+exec_always --no-startup-id picom -b --experimental-backend
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh --forest
 
 # Use pactl to adjust volume in PulseAudio.
@@ -116,7 +116,6 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-workspace_auto_back_and_forth yes
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
