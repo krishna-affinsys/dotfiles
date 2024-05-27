@@ -58,7 +58,7 @@ $lock)
 	if [[ -f /usr/bin/betterlockscreen ]]; then
 		betterlockscreen -l
 	elif [[ -f /usr/bin/i3lock ]]; then
-		i3lock
+		i3lock -c 000000
 	fi
 	;;
 $suspend)
