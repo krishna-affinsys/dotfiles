@@ -123,9 +123,9 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 
 ## Screenshots
-bindsym Print exec --no-startup-id maim "$HOME/Pictures/$(date)"
-bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "$HOME/Pictures/$(date)"
-bindsym Shift+Print exec --no-startup-id maim --select "$HOME/Pictures/$(date)"
+bindsym Print exec --no-startup-id maim "$HOME/Pictures/$(date).png"
+bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "$HOME/Pictures/$(date).png"
+bindsym Shift+Print exec --no-startup-id maim --select "$HOME/Pictures/$(date).png"
 
 ## Clipboard Screenshots
 bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
