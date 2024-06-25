@@ -7,7 +7,7 @@ alias l='ls -CF'
 alias cd='z'
 alias ..='cd ..'
 alias vim='nvim'
-
+alias pip='uv pip'
 # alias ls='eza -al --color=always --group-directories-first' # my preferred listing
 # alias la='eza -a --color=always --group-directories-first'  # all files and dirs
 # alias ll='eza -l --color=always --group-directories-first'  # long format
