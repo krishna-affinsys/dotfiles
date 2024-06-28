@@ -1,18 +1,22 @@
 alias bashconfig='$EDITOR ~/.bashrc'
-alias ls='ls --color=auto'
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+
+if command -v eza &> /dev/null; then
+  alias ls='eza --icons --color=always --group-directories-first' # my preferred listing
+  alias la='eza -a --icons --color=always --group-directories-first'  # all files and dirs
+  alias ll='eza -l --icons --color=always --group-directories-first'  # long format
+  alias lt='eza -aT --icons --color=always --group-directories-first' # tree listing
+  alias l.='eza -a --icons | egrep "^\."'
+else
+  alias ls='ls --color=auto'
+  alias ll='ls -alF'
+  alias la='ls -A'
+  alias l='ls -CF'
+fi
 
 alias cd='z'
 alias ..='cd ..'
 alias vim='nvim'
 alias pip='uv pip'
-# alias ls='eza -al --color=always --group-directories-first' # my preferred listing
-# alias la='eza -a --color=always --group-directories-first'  # all files and dirs
-# alias ll='eza -l --color=always --group-directories-first'  # long format
-# alias lt='eza -aT --color=always --group-directories-first' # tree listing
-# alias l.='eza -a | egrep "^\."'
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
