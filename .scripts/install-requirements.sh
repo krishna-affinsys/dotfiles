@@ -11,6 +11,12 @@ yellow="\e[33m"
 red="\e[31m"
 reset="\e[0m"
 
+if command -v uv &> /dev/null; then
+    PIP_CMD="uv pip"
+else
+    PIP_CMD="pip"
+fi
+
 # Function to display a message with an icon and color
 display_message() {
 	local icon="$1"
@@ -26,9 +32,9 @@ install_requirements() {
 
 	display_message "$flag_icon" "$green" "Installing requirements from $requirements_file ..."
 	if $verbose; then
-		pip install -r "$requirements_file" || exit 1
+		$PIP_CMD install -r "$requirements_file" || exit 1
 	else
-		pip install -r "$requirements_file" &>/dev/null || exit 1
+		$PIP_CMD install -r "$requirements_file" &>/dev/null || exit 1
 	fi
 	display_message "$flag_icon" "$green" "Requirements from $requirements_file installed successfully."
 }
@@ -45,12 +51,12 @@ install_internal_packages() {
 			pkg_ver=$(echo "$pkg" | awk -F '==' '{print $2}')
 			display_message "$flag_icon" "$yellow" "Installing ${pkg_name}@${pkg_ver}"
 			if $verbose; then
-				pip install "git+https://$GIT_TOKEN@github.com/BankBuddy/bud-core-${pkg_name}-lib@$pkg_ver" || {
+				$PIP_CMD install "git+https://$GIT_TOKEN@github.com/BankBuddy/bud-core-${pkg_name}-lib@$pkg_ver" || {
 					display_message "$cross_icon" "$red" "Failed to install ${pkg_name}@${pkg_ver}"
 					continue
 				}
 			else
-				pip install "git+https://$GIT_TOKEN@github.com/BankBuddy/bud-core-${pkg_name}-lib@$pkg_ver" &>/dev/null || {
+				$PIP_CMD install "git+https://$GIT_TOKEN@github.com/BankBuddy/bud-core-${pkg_name}-lib@$pkg_ver" &>/dev/null || {
 					display_message "$cross_icon" "$red" "Failed to install ${pkg_name}@${pkg_ver}"
 					continue
 				}

@@ -12,7 +12,7 @@ white = "0xFFFFFF"
 yellow = "0xFFCB6B"
 
 [colors.normal]
-black = "0x282828"
+black = "0x030304"
 blue = "0x82AAFF"
 cyan = "0x89DDFF"
 green = "0xC3E88D"
@@ -22,7 +22,7 @@ white = "0xBFBFBF"
 yellow = "0xFFCB6B"
 
 [colors.primary]
-background = "0x1C1C1C"
+background = "0x061012"
 foreground = "0xFAFAFA"
 
 [cursor]

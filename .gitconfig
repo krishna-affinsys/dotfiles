@@ -7,8 +7,11 @@
 [core]
 	autocrlf = input
 	editor = nvim
+	pager = diff-so-fancy | less --tabs=4 -RF
 [init]
   defaultBranch = main
 
 [includeIf "gitdir:~/personal/**"]
   path = ~/.gitconfig_personal
+[interactive]
+	diffFilter = diff-so-fancy --patch
