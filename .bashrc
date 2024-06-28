@@ -12,7 +12,7 @@ shopt -s checkwinsize   # Check terminal size when bash regains control
 
 # Export settings
 export TERM="xterm-256color"
-export HISTCONTROL=ignoredups:erasedups # No duplicate entries
+export HISTCONTROL=ignoredups # No duplicate entries
 export PATH="$HOME/.bin:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/go/bin:$PATH"
 export NVM_DIR="$HOME/.config/nvm"
 
@@ -65,6 +65,11 @@ fi
 if command -v starship &>/dev/null; then
 	eval "$(starship init bash)"
 fi
+
+if command -v fzf &>/dev/null; then
+	eval "$(fzf --bash)"
+fi
+
 
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
