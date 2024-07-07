@@ -1,4 +1,6 @@
 alias bashconfig='$EDITOR ~/.bashrc'
+alias i3config='$EDITOR ~/.config/i3/config'
+
 
 if command -v eza &> /dev/null; then
   alias ls='eza --icons --color=always --group-directories-first' # my preferred listing
