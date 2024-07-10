@@ -6,7 +6,6 @@ shopt -s autocd         # Change to named directory
 shopt -s cdspell        # Autocorrect cd misspellings
 shopt -s cmdhist        # Save multi-line commands in history as single line
 shopt -s dotglob        # Include hidden files in globs
-shopt -s histappend     # Do not overwrite history
 shopt -s expand_aliases # Expand aliases
 shopt -s checkwinsize   # Check terminal size when bash regains control
 
