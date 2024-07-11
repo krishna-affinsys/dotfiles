@@ -12,6 +12,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xinput set-prop "ELAN06C7:00 04F3:3193 Touchpad" "libinput Tapping Enabled" 1
 exec_always --no-startup-id picom -b --experimental-backend
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh --forest
+exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
