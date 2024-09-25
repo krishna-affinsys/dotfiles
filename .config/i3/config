@@ -27,7 +27,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 bindsym $mod+shift+x exec betterlockscreen -l blur
 floating_modifier $mod
 
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec ~/.scripts/launch-terminal.sh
 bindsym $mod+w kill
 bindsym $mod+d exec --no-startup-id dmenu_run
 bindsym $mod+s exec --no-startup-id ~/.config/polybar/scripts/launcher.sh
