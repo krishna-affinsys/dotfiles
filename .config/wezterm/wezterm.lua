@@ -6,7 +6,7 @@ config.font = wezterm.font {
   family = "Fira Code Nerd Font",
   harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
 }
-
+config.front_end = "OpenGL"
 config.initial_rows = 32
 config.initial_cols = 128
 config.font_size = 11.0

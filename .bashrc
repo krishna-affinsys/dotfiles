@@ -21,6 +21,13 @@ else
 	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 
+
+if [ -d ~/.bash_completion.d ]; then
+    for file in ~/.bash_completion.d/* ; do
+        [ -r "$file" ] && . "$file"
+    done
+fi
+
 # Set default editor based on availability
 if command -v nvim &>/dev/null; then
 	export EDITOR='nvim'
