@@ -10,7 +10,7 @@ exec --no-startup-id nitrogen --restore
 exec --no-startup-id ~/.scripts/battery-check.sh
 
 # exec --no-startup-id feh --restore
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l dim --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id xinput set-prop "ELAN06C7:00 04F3:3193 Touchpad" "libinput Tapping Enabled" 1
 exec_always --no-startup-id /usr/local/bin/picom -b
@@ -24,7 +24,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
-bindsym $mod+shift+x exec betterlockscreen -l blur
+bindsym $mod+shift+x exec betterlockscreen -l dim
 floating_modifier $mod
 
 bindsym $mod+Return exec ~/.scripts/launch-terminal.sh
