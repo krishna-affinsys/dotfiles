@@ -18,7 +18,7 @@ fi
 alias cd='z'
 alias ..='cd ..'
 alias vim='nvim'
-# alias pip='uv pip'
+alias pip='uv pip'
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
