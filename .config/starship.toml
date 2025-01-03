@@ -1,6 +1,11 @@
+command_timeout = 1000
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false 
+
 format = """
-$username\
-$hostname\
+ ➜\
 $directory\
 $git_branch\
 $git_state\
@@ -8,40 +13,217 @@ $git_status\
 $cmd_duration\
 $line_break\
 $python\
-$character"""
+$character
+"""
+
+right_format = """$all"""
+
+palette = "custom"
+
+# [palettes.catppuccin_mocha]
+# rosewater = "#f5e0dc"
+# flamingo = "#f2cdcd"
+# pink = "#f5c2e7"
+# mauve = "#cba6f7"
+# red = "#f38ba8"
+# maroon = "#eba0ac"
+# peach = "#fab387"
+# yellow = "#f9e2af"
+# green = "#a6e3a1"
+# teal = "#94e2d5"
+# sky = "#89dceb"
+# sapphire = "#74c7ec"
+# blue = "#89b4fa"
+# lavender = "#b4befe"
+# text = "#cdd6f4"
+# subtext1 = "#bac2de"
+# subtext0 = "#a6adc8"
+# overlay2 = "#9399b2"
+# overlay1 = "#7f849c"
+# overlay0 = "#6c7086"
+# surface2 = "#585b70"
+# surface1 = "#45475a"
+# surface0 = "#313244"
+# base = "#1e1e2e"
+# mantle = "#181825"
+# crust = "#11111b"
+
+[palettes.custom]
+rosewater = "#f5e0dc"
+flamingo = "#eb6f92"
+pink = "#f5c2e7"
+orange = "#cba6f7"
+color_red = '#cc241d'
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+foam = "#9ccfd8"
+pine = "#31748f"
+gold = "#f6c177"
+rose = "#ebbcba"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
+
+
+[username]
+#show_always = true
+#style_user = "bg:surface0 fg:text"
+#style_root = "bg:surface0 fg:text"
+#format = '[ $user ]($style)'
 
 [directory]
-style = "blue"
+style = "sapphire"
+format = "[ $path ]($style)"
+#truncation_length = 4
+#truncation_symbol = "…/"
 
-# [username]
-# show_always=true
-# format = '[$user]($style)@'
-#
-# [hostname]
-# ssh_only = false
-# format = '[$hostname](bold red) '
-# disabled = false
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"work" = "󰲋 "
 
-[character]
-success_symbol = "[➜](green)"
-error_symbol = "[➜](red)"
-vimcmd_symbol = "[➜](purple)"
+[os]
+disabled = false
+style = "bg:surface0 fg:text"
+
+
 
 [git_branch]
-format = "[$branch]($style)"
-style = "bright-black"
+symbol = "[](black) "
+# format =  ' [$symbol$branch(:$remote_branch)]($style)[]'
+style = "fg:lavender bg:black"
+format =  '[$symbol$branch]($style)[](black)'
 
 [git_status]
-format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
-style = "cyan"
-conflicted = "​"
-untracked = "​"
-modified = "​"
-staged = "​"
-renamed = "​"
-deleted = "​"
-stashed = "≡"
+format = ' [($all_status$ahead_behind )]($style)'
 
+[nodejs]
+symbol = ""
+format = '[ $symbol( $version) ]($style)'
+
+[c]
+symbol = " "
+format = '[ $symbol( $version) ]($style)'
+
+[rust]
+symbol = ""
+format = '[ $symbol( $version) ]($style)'
+
+[golang]
+symbol = ""
+format = '[ $symbol( $version) ]($style)'
+detect_files = ["go.mod"]
+
+[php]
+symbol = ""
+format = '[[ $symbol( $version) ]]($style)'
+
+[java]
+symbol = " "
+format = '[[ $symbol( $version) ]]($style)'
+
+[kotlin]
+symbol = ""
+
+format = '[[ $symbol( $version) ]]($style)'
+
+[haskell]
+symbol = ""
+
+format = '[[ $symbol( $version) ]]($style)'
+
+# [python]
+# symbol = ""
+# format = '[$symbol ( $virtualenv )]($style)'
+
+
+[docker_context]
+symbol = ""
+format = '[ $symbol( $context) ]($style)'
+
+
+[time]
+disabled = true
+time_format = "%R"
+style = "bg:peach"
+format = '[[  $time ](fg:mantle bg:foam)]($style)'
+
+[line_break]
+disabled = true 
+
+[character]
+disabled = false
+success_symbol = '[𝘹](bold fg:green)'
+error_symbol = '[𝘹](bold fg:red)'
+vimcmd_symbol = '[](bold fg:creen)'
+vimcmd_replace_one_symbol = '[](bold fg:purple)'
+vimcmd_replace_symbol = '[](bold fg:purple)'
+vimcmd_visual_symbol = '[](bold fg:lavender)'
+
+#
+# format = """
+# $username\
+# $hostname\
+# $directory\
+# $git_branch\
+# $git_state\
+# $git_status\
+# $cmd_duration\
+# $line_break\
+# $python\
+# $character"""
+#
+# [directory]
+# style = "blue"
+#
+# # [username]
+# # show_always=true
+# # format = '[$user]($style)@'
+# #
+# # [hostname]
+# # ssh_only = false
+# # format = '[$hostname](bold red) '
+# # disabled = false
+#
+# [character]
+# success_symbol = "[➜](green)"
+# error_symbol = "[➜](red)"
+# vimcmd_symbol = "[➜](purple)"
+#
+# [git_branch]
+# format = "[$branch]($style)"
+# style = "bright-black"
+#
+# [git_status]
+# format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+# style = "cyan"
+# conflicted = "​"
+# untracked = "​"
+# modified = "​"
+# staged = "​"
+# renamed = "​"
+# deleted = "​"
+# stashed = "≡"
+#
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
 style = "bright-black"
@@ -49,7 +231,7 @@ style = "bright-black"
 [cmd_duration]
 format = "[$duration]($style) "
 style = "yellow"
-
+#
 [python]
 format = "[$virtualenv]($style) "
 style = "bright-black"
