@@ -57,7 +57,7 @@ return {
 					settings = {
 						python = {
 							analysis = {
-								typeCheckingMode = "basic",
+								typeCheckingMode = "off",
 								autoSearchPaths = true,
 								useLibraryCodeForTypes = true,
 								diagnosticMode = "workspace",
@@ -71,7 +71,8 @@ return {
 				},
 				tailwindcss = {
 					filetypes = { "html", "css", "javascript", "javascriptreact", "typescript", "typescriptreact" },
-					root_dir = lspconfig.util.root_pattern("tailwind.config.js", "tailwind.config.ts", "package.json"),
+					root_dir = lspconfig.util.root_pattern("tailwind.config.js", "tailwind.config.ts",
+						"package.json"),
 				},
 				clangd = {
 					cmd = {
