@@ -1,6 +1,9 @@
 #!/bin/bash
 
-if command -v wezterm &> /dev/null
+if command -v ghostty &> /dev/null
+then
+  ghostty
+elif command -v wezterm &> /dev/null
 then
   wezterm
 else
