@@ -1,39 +1,40 @@
-vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
-vim.g.mapleader = " "
+require("config.lazy")
+vim.cmd.colorscheme("vague")
 
--- bootstrap lazy and all plugins
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+vim.o.termguicolors = true
 
-if not vim.loop.fs_stat(lazypath) then
-  local repo = "https://github.com/folke/lazy.nvim.git"
-  vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
-end
+-- Decrease update time
+vim.o.timeoutlen = 500
+vim.o.updatetime = 200
 
-vim.opt.rtp:prepend(lazypath)
+-- Better editor UI
+vim.o.number = true
+vim.o.numberwidth = 2
+vim.o.relativenumber = true
+vim.o.signcolumn = "yes"
+vim.o.cursorline = true
 
-local lazy_config = require "configs.lazy"
+-- Better editing experience
+vim.o.expandtab = true
+vim.o.smarttab = true
+vim.o.cindent = true
+vim.o.autoindent = true
+vim.o.wrap = false
+vim.o.textwidth = 300
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.softtabstop = -1 -- If negative, shiftwidth value is used
+vim.o.list = true
+vim.o.listchars = "trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂"
 
--- load plugins
-require("lazy").setup({
-  {
-    "NvChad/NvChad",
-    lazy = false,
-    branch = "v2.5",
-    import = "nvchad.plugins",
-    config = function()
-      require "options"
-    end,
-  },
+-- Makes neovim and host OS clipboard play nicely with each other
+vim.o.clipboard = "unnamedplus"
 
-  { import = "plugins" },
-}, lazy_config)
+-- Case insensitive searching UNLESS /C or capital in search
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
--- load theme
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "statusline")
+-- Undo and backup options
+vim.o.undofile = true
 
-require "nvchad.autocmds"
-
-vim.schedule(function()
-  require "mappings"
-end)
+vim.opt.mouse = "a"
