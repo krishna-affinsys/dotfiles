@@ -38,3 +38,11 @@ vim.o.smartcase = true
 vim.o.undofile = true
 
 vim.opt.mouse = "a"
+
+vim.diagnostic.config({
+    virtual_text = true, -- shows inline text (error/warning under line)
+    signs = true,      -- shows icons in the sign column
+    underline = true,
+    update_in_insert = false,
+    severity_sort = true,
+})
