@@ -17,3 +17,5 @@
 	diffFilter = diff-so-fancy --patch
 [credential]
 	helper = store
+[format]
+	signoff = true
