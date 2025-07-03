@@ -84,5 +84,5 @@ fi
 . "$HOME/.cargo/env"
 
 # >>>> Vagrant command completion (start)
-. /opt/vagrant/embedded/gems/gems/vagrant-2.4.6/contrib/bash/completion.sh
+. /opt/vagrant/embedded/gems/gems/vagrant-2.4.7/contrib/bash/completion.sh
 # <<<<  Vagrant command completion (end)
