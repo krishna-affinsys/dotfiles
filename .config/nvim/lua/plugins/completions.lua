@@ -1,14 +1,23 @@
 return {
     {
+        "hrsh7th/cmp-nvim-lsp",
+    },
+    {
+        "hrsh7th/cmp-nvim-lsp-signature-help",
+    },
+    {
+        "hrsh7th/cmp-buffer",
+    },
+    {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+    },
+    {
         "L3MON4D3/LuaSnip",
         dependencies = {
             "saadparwaiz1/cmp_luasnip",
             "rafamadriz/friendly-snippets",
         },
-    },
-    {
-        "windwp/nvim-autopairs",
-        event = "InsertEnter",
     },
     {
         "hrsh7th/nvim-cmp",
@@ -17,7 +26,6 @@ return {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-cmdline",
-            "hrsh7th/cmp-nvim-lsp-signature-help", -- Added here
             "L3MON4D3/LuaSnip",
             "saadparwaiz1/cmp_luasnip",
             "windwp/nvim-autopairs",
@@ -27,17 +35,14 @@ return {
             local cmp_autopairs = require("nvim-autopairs.completion.cmp")
             local cmp = require("cmp")
 
-            -- Load snippets before setting up cmp
             require("luasnip.loaders.from_vscode").lazy_load()
-
-            -- Fix: Pass function reference, not a function call
-            cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done)
+            cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
             cmp.setup({
                 preselect = cmp.PreselectMode.None,
                 snippet = {
                     expand = function(args)
-                        luasnip.lsp_expand(args.body)
+                        require("luasnip").lsp_expand(args.body)
                     end,
                 },
                 window = {
@@ -69,28 +74,12 @@ return {
                         end
                     end, { "i", "s" }),
                 }),
-                formatting = {
-                    fields = { "abbr", "kind", "menu" },
-                    format = function(entry, vim_item)
-                        vim_item.menu = ({
-                            nvim_lsp = "[LSP]",
-                            luasnip = "[Snippet]",
-                            buffer = "[Buffer]",
-                            path = "[Path]",
-                            cmdline = "[Cmd]",
-                            nvim_lsp_signature_help = "[Signature]",
-                            emoji = "[Emoji]",
-                        })[entry.source.name] or "[Other]"
-                        return vim_item
-                    end,
-                },
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
                     { name = "luasnip" },
                     { name = "nvim_lsp_signature_help" },
                     { name = "path" },
                     { name = "buffer" },
-                    { name = "emoji" },
                 }),
             })
         end,

@@ -9,21 +9,18 @@ vim.o.updatetime = 200
 
 -- Better editor UI
 vim.o.number = true
-vim.o.numberwidth = 2
 vim.o.relativenumber = true
+vim.o.numberwidth = 2
 vim.o.signcolumn = "yes"
 vim.o.cursorline = true
-
--- Better editing experience
 vim.o.expandtab = true
 vim.o.smarttab = true
 vim.o.cindent = true
 vim.o.autoindent = true
-vim.o.wrap = false
+vim.o.wrap = true
 vim.o.textwidth = 300
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
-vim.o.softtabstop = -1 -- If negative, shiftwidth value is used
 vim.o.list = true
 vim.o.listchars = "trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂"
 
@@ -34,15 +31,21 @@ vim.o.clipboard = "unnamedplus"
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
--- Undo and backup options
+-- Creates an undofile just in case you need to undo to the previous version
 vim.o.undofile = true
 
+-- Enable mouse actions for vim
 vim.opt.mouse = "a"
 
-vim.diagnostic.config({
-    virtual_text = true, -- shows inline text (error/warning under line)
-    signs = true,      -- shows icons in the sign column
-    underline = true,
-    update_in_insert = false,
-    severity_sort = true,
+
+vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
+vim.keymap.set("n", "<space>x", "<cmd>:.lua<CR>")
+vim.keymap.set("v", "<space>x", "<cmd>:lua<CR>")
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+    desc = 'Highlight when yanking text',
+    group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+    callback = function()
+        vim.highlight.on_yank()
+    end
 })
