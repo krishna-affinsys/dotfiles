@@ -1,6 +1,6 @@
 # By default Reload config with shft + cmd + , 
 
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 background = #000000
 background-opacity = 0.90
 background-blur-radius = 20

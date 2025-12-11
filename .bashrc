@@ -14,7 +14,7 @@ export TERM="xterm-256color"
 export HISTCONTROL=ignoredups # No duplicate entries
 export HISTSIZE=1000
 export HISTFILESIZE=200000
-export PATH="$HOME/.bin:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/go/bin:$PATH"
+export PATH="$HOME/.bin:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/go/bin:/opt/mold/bin:$HOME/.config/emacs/bin:$PATH"
 export NVM_DIR="$HOME/.config/nvm"
 
 if [ "$color_prompt" = yes ]; then
@@ -84,5 +84,5 @@ fi
 . "$HOME/.cargo/env"
 
 # >>>> Vagrant command completion (start)
-. /opt/vagrant/embedded/gems/gems/vagrant-2.4.7/contrib/bash/completion.sh
+. /opt/vagrant/embedded/gems/gems/vagrant-2.4.9/contrib/bash/completion.sh
 # <<<<  Vagrant command completion (end)
