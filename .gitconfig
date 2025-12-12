@@ -19,3 +19,5 @@
 	helper = store
 [format]
 	signoff = true
+[maintenance]
+	repo = /home/krishna/work/clone/auth/internal-provider

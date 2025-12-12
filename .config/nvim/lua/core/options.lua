@@ -1,0 +1,35 @@
+local o = vim.opt
+
+o.mouse = "a"
+o.clipboard = "unnamedplus"
+o.expandtab = true
+o.shiftwidth = 4
+o.tabstop = 4
+o.smartindent = true
+o.undofile = true
+o.wrap = false
+o.ignorecase = true
+o.smartcase = true
+o.termguicolors = true
+o.signcolumn = "yes"
+o.cursorline = true
+o.scrolloff = 8
+o.termguicolors = true
+o.timeoutlen = 500
+o.updatetime = 200
+o.number = true
+o.relativenumber = true
+o.numberwidth = 2
+o.signcolumn = "yes"
+o.cursorline = true
+o.expandtab = true
+o.smarttab = true
+o.cindent = true
+o.autoindent = true
+o.wrap = true
+o.textwidth = 300
+o.tabstop = 4
+o.shiftwidth = 4
+o.list = true
+o.listchars = "trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂"
+
