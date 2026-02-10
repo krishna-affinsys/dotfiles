@@ -1,12 +1,11 @@
 # By default Reload config with shft + cmd + , 
-
 theme = Material Darker
 background = #000000
-background-opacity = 0.90
+background-opacity = 0.80
 background-blur-radius = 20
 
 font-family = Hack Nerd Font 
-font-size = 11
+font-size = 12
 cursor-style = block
 cursor-style-blink = true
 cursor-invert-fg-bg = true
@@ -14,19 +13,15 @@ cursor-invert-fg-bg = true
 mouse-hide-while-typing = true
 
 confirm-close-surface = false
-window-decoration = false
+window-decoration = true
 window-padding-x = 10
 window-padding-y = 10
 window-padding-balance = true
 window-padding-color = background
 window-vsync = true
-
+shell-integration = zsh
 auto-update = check
 auto-update-channel = stable
-
-# extras
-shell-integration = bash
-copy-on-select = clipboard
 
 # Custom Keybinds & Config (super represents cmd key on mac)
 # For Simple Keybinds

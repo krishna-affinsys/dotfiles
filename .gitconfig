@@ -11,11 +11,11 @@
 [init]
   defaultBranch = main
 
-[includeIf "gitdir:~/personal/**"]
-  path = ~/.gitconfig_personal
+[includeif "gitdir:~/personal/"]
+    path = ~/.gitconfig-personal
+
 [interactive]
 	diffFilter = diff-so-fancy --patch
-[credential]
-	helper = store
 [format]
 	signoff = true
+
