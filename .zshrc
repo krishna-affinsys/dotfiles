@@ -1,3 +1,7 @@
+
+# Kiro CLI pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
+
 # Download Znap, if it's not there yet.
 #
 [[ -r ~/.config/znap/znap.zsh ]] ||
@@ -109,12 +113,15 @@ znap eval gcloud 'source /opt/homebrew/share/google-cloud-sdk/completion.zsh.inc
 # NVM Configuration (lazy loading for speed)
 # ============================================================================
 export NVM_DIR="$HOME/.config/nvm"
-if [ -s "$(brew --prefix nvm)/nvm.sh" ]; then
-    alias nvm='unalias nvm && source "$(brew --prefix nvm)/nvm.sh" && nvm'
-    alias node='unalias node && source "$(brew --prefix nvm)/nvm.sh" && node'
-    alias npm='unalias npm && source "$(brew --prefix nvm)/nvm.sh" && npm'
-fi
+source "$(brew --prefix nvm)/nvm.sh"
 
+# export NVM_DIR="$HOME/.config/nvm"
+# if [ -s "$(brew --prefix nvm)/nvm.sh" ]; then
+#     alias nvm='unalias nvm && source "$(brew --prefix nvm)/nvm.sh" && nvm'
+#     alias node='unalias node && source "$(brew --prefix nvm)/nvm.sh" && node'
+#     alias npm='unalias npm && source "$(brew --prefix nvm)/nvm.sh" && npm'
+# fi
+#
 # ============================================================================
 # Cargo (Rust)
 # ============================================================================
@@ -141,6 +148,7 @@ fi
 
 alias vim="nvim"
 alias pip="uv pip"
+alias k="kubectl"
 
 # Secret environment variables
 [[ -f ~/.zsh_envs ]] && source ~/.zsh_envs
@@ -151,3 +159,9 @@ alias pip="uv pip"
 export HOMEBREW_NO_AUTO_UPDATE=1  # Disable auto-update (speeds up brew commands)
 export HOMEBREW_NO_ANALYTICS=1     # Disable analytics
 
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+
+# Kiro CLI post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"
