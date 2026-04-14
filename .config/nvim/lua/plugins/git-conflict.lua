@@ -1,15 +1,16 @@
 return {
   "akinsho/git-conflict.nvim",
   version = "*",
+  event = "BufReadPost",
   config = function()
     require("git-conflict").setup({
-      default_mappings = true, -- Enable default keybindings
-      disable_diagnostics = false, -- Keep LSP diagnostics enabled
-      highlights = { -- Custom highlight groups
+      default_mappings = true,
+      disable_diagnostics = false,
+      highlights = {
         incoming = "DiffAdd",
         current = "DiffText",
       },
-      debug = false, -- Debugging logs
+      debug = false,
     })
   end
 }

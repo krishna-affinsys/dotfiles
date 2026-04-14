@@ -1,10 +1,12 @@
 -- Lazy
 return {
   "vague2k/vague.nvim",
-  config = function()
-    require("vague").setup({
-      -- optional configuration here
-      transparent = true
-    })
-  end
+  lazy = false,
+  priority = 1000,
+  opts = {
+    transparent = true,
+  },
+  config = function(_, opts)
+    require("vague").setup(opts)
+  end,
 }

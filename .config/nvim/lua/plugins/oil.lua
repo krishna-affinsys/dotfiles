@@ -1,7 +1,10 @@
 return {
 	"stevearc/oil.nvim",
-	opts = {},
-	dependencies = { { "echasnovski/mini.icons", opts = {} } },
+	cmd = "Oil",
+	keys = {
+		{ "-", "<cmd>Oil<CR>", desc = "Open parent directory" },
+	},
+	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		require("oil").setup({
 			default_file_explorer = true,

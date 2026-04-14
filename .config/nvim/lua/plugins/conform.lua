@@ -1,10 +1,21 @@
 return {
 	"stevearc/conform.nvim",
+	event = { "BufWritePre" },
+	cmd = { "ConformInfo" },
+	keys = {
+		{
+			"<leader>cf",
+			function()
+				require("conform").format({ async = true, lsp_format = "fallback" })
+			end,
+			desc = "Format buffer",
+		},
+	},
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
-				python = { "ruff" },
+				python = { "ruff_fix", "ruff_format" },
 				rust = { "rustfmt" },
 				javascript = { "prettier", stop_after_first = true },
 				javascriptreact = { "prettier", stop_after_first = true },
@@ -28,13 +39,14 @@ return {
 				timeout_ms = 500,
 				lsp_format = "fallback",
 			},
-		})
-
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			pattern = "*",
-			callback = function(args)
-				require("conform").format({ bufnr = args.buf })
-			end,
+			formatters = {
+				ruff_fix = {
+					prepend_args = { "--line-length", "100" },
+				},
+				ruff_format = {
+					prepend_args = { "--line-length", "100" },
+				},
+			},
 		})
 	end,
 }

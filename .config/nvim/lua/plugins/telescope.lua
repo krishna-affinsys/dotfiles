@@ -1,29 +1,74 @@
--- telescope.nvim
 return {
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.8",
+		cmd = "Telescope",
+		keys = {
+			{
+				"<leader>ff",
+				function()
+					require("telescope.builtin").find_files()
+				end,
+				desc = "Find files",
+			},
+			{
+				"<leader>fg",
+				function()
+					require("telescope.builtin").live_grep()
+				end,
+				desc = "Live grep",
+			},
+			{
+				"<leader>fb",
+				function()
+					require("telescope.builtin").buffers()
+				end,
+				desc = "Buffers",
+			},
+			{
+				"<leader>fd",
+				function()
+					require("telescope.builtin").diagnostics()
+				end,
+				desc = "Diagnostics",
+			},
+			{
+				"<leader>fh",
+				function()
+					require("telescope.builtin").help_tags()
+				end,
+				desc = "Help tags",
+			},
+			{
+				"<leader>fz",
+				function()
+					require("telescope").extensions.zoxide.list()
+				end,
+				desc = "Zoxide",
+			},
+		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
 			},
+			"jvgrootveld/telescope-zoxide",
+			"nvim-telescope/telescope-ui-select.nvim",
 		},
 		config = function()
-			require("telescope").setup({
+			local telescope = require("telescope")
+
+			telescope.setup({
 				extensions = {
 					fzf = {
-						fuzzy = true, -- false will only do exact matching
-						override_generic_sorter = true, -- override the generic sorter
-						override_file_sorter = true, -- override the file sorter
+						fuzzy = true,
+						override_generic_sorter = true,
+						override_file_sorter = true,
 						case_mode = "smart_case",
 					},
+					["ui-select"] = require("telescope.themes").get_dropdown({}),
 				},
 				pickers = {
-					colorscheme = {
-						enable_preview = true,
-					},
 					find_files = {
 						hidden = true,
 						find_command = {
@@ -38,45 +83,9 @@ return {
 				},
 			})
 
-			require("telescope").load_extension("fzf")
-			require("telescope").load_extension("zoxide")
-			-- telescope setup
-			local builtin = require("telescope.builtin")
-
-			vim.keymap.set(
-				"n",
-				"<leader>jk",
-				"<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>",
-				{}
-			)
-			vim.keymap.set("n", "<leader>ff", ":Telescope find_files<cr>", {})
-			vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-			vim.keymap.set("n", "<leader>fd", builtin.diagnostics, {})
-			vim.keymap.set("n", "<leader>ds", builtin.lsp_document_symbols, {})
-			vim.keymap.set("n", "<leader>ws", builtin.lsp_workspace_symbols, {})
-			vim.keymap.set("n", "<leader>fz", ":Telescope zoxide list<CR>", {})
-			vim.keymap.set("n", "<leader>fv", builtin.help_tags, {})
-		end,
-	},
-	{
-		"jvgrootveld/telescope-zoxide",
-		config = function() end,
-	},
-	{
-		"nvim-telescope/telescope-ui-select.nvim",
-		config = function()
-			require("telescope").setup({
-				extensions = {
-					["ui-select"] = {
-						require("telescope.themes").get_dropdown({
-							-- even more opts
-						}),
-					},
-				},
-			})
-			-- To get ui-select loaded and working with telescope, you need to call
-			-- load_extension, somewhere after setup function:
-			require("telescope").load_extension("ui-select")
+			telescope.load_extension("fzf")
+			telescope.load_extension("ui-select")
+			telescope.load_extension("zoxide")
 		end,
 	},
 }

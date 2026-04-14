@@ -1,31 +1,27 @@
 return {
     {
-        "hrsh7th/cmp-nvim-lsp",
-    },
-    {
-        "hrsh7th/cmp-nvim-lsp-signature-help",
-    },
-    {
-        "hrsh7th/cmp-buffer",
+        "L3MON4D3/LuaSnip",
+        event = "InsertEnter",
+        dependencies = {
+            "rafamadriz/friendly-snippets",
+        },
+        config = function()
+            require("luasnip.loaders.from_vscode").lazy_load()
+        end,
     },
     {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
-    },
-    {
-        "L3MON4D3/LuaSnip",
-        dependencies = {
-            "saadparwaiz1/cmp_luasnip",
-            "rafamadriz/friendly-snippets",
-        },
+        opts = {},
     },
     {
         "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
-            "hrsh7th/cmp-cmdline",
+            "hrsh7th/cmp-nvim-lsp-signature-help",
             "L3MON4D3/LuaSnip",
             "saadparwaiz1/cmp_luasnip",
             "windwp/nvim-autopairs",
@@ -35,7 +31,6 @@ return {
             local cmp_autopairs = require("nvim-autopairs.completion.cmp")
             local cmp = require("cmp")
 
-            require("luasnip.loaders.from_vscode").lazy_load()
             cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
             cmp.setup({
@@ -54,7 +49,7 @@ return {
                     ["<C-f>"] = cmp.mapping.scroll_docs(4),
                     ["<C-Space>"] = cmp.mapping.complete(),
                     ["<C-e>"] = cmp.mapping.abort(),
-                    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+                    ["<CR>"] = cmp.mapping.confirm({ select = true }),
                     ["<Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_next_item()
@@ -77,8 +72,8 @@ return {
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
                     { name = "luasnip" },
-                    { name = "nvim_lsp_signature_help" },
                     { name = "path" },
+                    { name = "nvim_lsp_signature_help" },
                     { name = "buffer" },
                 }),
             })

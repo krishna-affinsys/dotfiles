@@ -1,42 +1,55 @@
 return {
 	{
 		"Wansmer/treesj",
-		keys = { "<space>m", "<space>j", "<space>s" },
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		keys = {
+			{
+				"<leader>m",
+				function()
+					require("treesj").toggle()
+				end,
+				desc = "Toggle split/join",
+			},
+			{
+				"<leader>j",
+				function()
+					require("treesj").join()
+				end,
+				desc = "Join node",
+			},
+			{
+				"<leader>s",
+				function()
+					require("treesj").split()
+				end,
+				desc = "Split node",
+			},
+		},
 		config = function()
-			require("treesj").setup({})
+			require("treesj").setup({
+				use_default_keymaps = false,
+				max_join_length = 180,
+			})
 		end,
-	},
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		config = function()
-			local npairs = require("nvim-autopairs")
-			npairs.setup({})
-		end,
-		opts = {},
 	},
 	{
 		"echasnovski/mini.surround",
+		event = "VeryLazy",
 		opts = {
-			custom_surroundings = nil,
 			highlight_duration = 500,
 			mappings = {
-				add = "sa", -- Add surrounding in Normal and Visual modes
-				delete = "sd", -- Delete surrounding
-				find = "sf", -- Find surrounding (to the right)
-				find_left = "sF", -- Find surrounding (to the left)
-				highlight = "sh", -- Highlight surrounding
-				replace = "sr", -- Replace surrounding
-				update_n_lines = "sn", -- Update `n_lines`
-
-				suffix_last = "l", -- Suffix to search with "prev" method
-				suffix_next = "n", -- Suffix to search with "next" method
+				add = "sa",
+				delete = "sd",
+				find = "sf",
+				find_left = "sF",
+				highlight = "sh",
+				replace = "sr",
+				update_n_lines = "sn",
+				suffix_last = "l",
+				suffix_next = "n",
 			},
 			n_lines = 20,
-			respect_selection_type = false,
 			search_method = "cover",
-			silent = false,
 		},
 	},
 }
