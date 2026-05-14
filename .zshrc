@@ -1,7 +1,3 @@
-
-# Kiro CLI pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
-
 # Download Znap, if it's not there yet.
 #
 [[ -r ~/.config/znap/znap.zsh ]] ||
@@ -149,6 +145,7 @@ fi
 alias vim="nvim"
 alias pip="uv pip"
 alias k="kubectl"
+alias zshconfig="vim ~/.zshrc"
 
 # Secret environment variables
 [[ -f ~/.zsh_envs ]] && source ~/.zsh_envs
@@ -162,6 +159,3 @@ export HOMEBREW_NO_ANALYTICS=1     # Disable analytics
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
-
-# Kiro CLI post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"

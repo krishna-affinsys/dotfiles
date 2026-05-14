@@ -2,7 +2,24 @@ return {
     {
         "williamboman/mason.nvim",
         cmd = "Mason",
-        opts = {},
+        config = function()
+            require("mason").setup()
+
+            local registry = require("mason-registry")
+            local tools = require("config.mason_tools").ensure_installed
+
+            registry.refresh(function()
+                for _, name in ipairs(tools) do
+                    if registry.has_package(name) then
+                        local package = registry.get_package(name)
+
+                        if not package:is_installed() and not package:is_installing() then
+                            package:install()
+                        end
+                    end
+                end
+            end)
+        end,
     },
 
     {
@@ -10,21 +27,7 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         dependencies = { "williamboman/mason.nvim" },
         config = function()
-            local servers = {
-                "lua_ls",
-                "zuban",
-                "rust_analyzer",
-                "gopls",
-                "html",
-                "cssls",
-                "tailwindcss",
-                "prismals",
-                "jsonls",
-                "yamlls",
-                "sqlls",
-                "marksman",
-                "clangd",
-            }
+            local servers = require("config.mason_tools").lsp_servers
 
             require("mason-lspconfig").setup({ ensure_installed = servers })
         end,
@@ -57,6 +60,14 @@ return {
                                 checkThirdParty = false,
                             },
                             telemetry = { enable = false },
+                        },
+                    },
+                },
+                ruff = {
+                    init_options = {
+                        settings = {
+                            lineLength = 100,
+                            showSyntaxErrors = false,
                         },
                     },
                 },
@@ -126,7 +137,29 @@ return {
                     map("<leader>rn", vim.lsp.buf.rename, "Rename symbol")
                     map("<leader>ca", vim.lsp.buf.code_action, "Code action")
 
-                    if not client or client.name ~= "zuban" then
+                    if not client then
+                        return
+                    end
+
+                    if client.name == "ruff" then
+                        client.server_capabilities.hoverProvider = false
+                        client.server_capabilities.documentFormattingProvider = false
+                        client.server_capabilities.documentRangeFormattingProvider = false
+
+                        map("<leader>co", function()
+                            vim.lsp.buf.code_action({
+                                apply = true,
+                                context = {
+                                    only = { "source.organizeImports.ruff" },
+                                    diagnostics = {},
+                                },
+                            })
+                        end, "Organize imports")
+
+                        return
+                    end
+
+                    if client.name ~= "zuban" then
                         return
                     end
 
@@ -158,7 +191,7 @@ return {
                         vim.lsp.buf.code_action({
                             apply = true,
                             context = {
-                                only = { "source.organizeImports" },
+                                only = { "source.organizeImports.ruff" },
                                 diagnostics = {},
                             },
                         })

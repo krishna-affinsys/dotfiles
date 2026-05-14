@@ -47,6 +47,14 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "markdown",
+    group = vim.api.nvim_create_augroup("markdown-line-length", { clear = true }),
+    callback = function(args)
+        vim.bo[args.buf].textwidth = 100
+    end,
+})
+
 vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight yanked text",
     group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
