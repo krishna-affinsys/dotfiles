@@ -110,7 +110,7 @@ style = "bg:surface0 fg:text"
 [git_branch]
 symbol = " "
 style = "fg:lavender"
-format =  '[$symbol$branch]($style)'
+format =  '[\[$symbol$branch\]]($style)'
 
 [git_status]
 format = ' [($all_status$ahead_behind )]($style)'
